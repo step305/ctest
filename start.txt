@@ -1,0 +1,7 @@
+g++ -c -fPIC -O3 -ffast-math -fopenmp kalman_compass.cpp -I H:\OPENCV\opencv\build\install\include
+g++ -c -fPIC -O3 -ffast-math -fopenmp matrix.cpp
+g++ -c -fPIC -O3 -ffast-math -fopenmp transformations.cpp
+g++ -c -fPIC -O3 -ffast-math -fopenmp utils.cpp -I H:\OPENCV\opencv\build\install\include
+g++ -c -fPIC -O3 -ffast-math -fopenmp attitude_mechanization.cpp
+
+g++ -shared -fopenmp -O3 -Wl,-soname,kalman.so -o kalman.so kalman_compass.o matrix.o attitude_mechanization.o transformations.o utils.o
