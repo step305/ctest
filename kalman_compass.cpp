@@ -451,30 +451,30 @@ void Compass(
         //std::cout << "C: " << X[3, 0] << ' ' << X[4,0] << ' ' << X[5, 0] << '\n';
 
         //Update gyro bias
-        bw[0] = bw[0] + X(3);
-        bw[1] = bw[1] + X(4);
-        bw[2] = bw[2] + X(5);
+        bw(0) = bw(0) + X(3);
+        bw(1) = bw(1) + X(4);
+        bw(2) = bw(2) + X(5);
 
         //Update gyro scale
-        sw[0] = sw[0] + X(6);
-        sw[1] = sw[1] + X(7);
-        sw[2] = sw[2] + X(8);
+        sw(0) = sw(0) + X(6);
+        sw(1) = sw(1) + X(7);
+        sw(2) = sw(2) + X(8);
 
         //Update gyro misalignment
-        mw[0] = mw[0] + X(9);
-        mw[1] = mw[1] + X(10);
-        mw[2] = mw[2] + X(11);
-        mw[3] = mw[3] + X(12);
-        mw[4] = mw[4] + X(13);
-        mw[5] = mw[5] + X(14);
+        mw(0) = mw(0) + X(9);
+        mw(1) = mw(1) + X(10);
+        mw(2) = mw(2) + X(11);
+        mw(3) = mw(3) + X(12);
+        mw(4) = mw(4) + X(13);
+        mw(5) = mw(5) + X(14);
 
         //Correct Map features n-frame unit vectors
         for( auto &feature : featureMap ) {
             feature.en += X.block( feature.pos, 0, nxf, 1 );
-            feature.en[0] = feature.en[0] + X[feature.pos, 0];
-            feature.en[1] = feature.en[1] + X[feature.pos+1, 0];
-            feature.en[2] = feature.en[2] + X[feature.pos+2, 0];
-            feature.cnt_obs += feature.obs;
+            //feature.en(0) = feature.en(0) + X(feature.pos, 0);
+            //feature.en(1) = feature.en(1) + X(feature.pos+1, 0);
+            //feature.en(2) = feature.en(2) + X(feature.pos+2, 0);
+            //feature.cnt_obs += feature.obs;
             feature.cnt_mat += feature.mat;
         }
 
